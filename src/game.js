@@ -9,20 +9,19 @@ class Game {
     this.clues = []
     this.players = []; 
     this.round = {}; 
-    this.currentPlayer = -1;
+    this.currentPlayer = 0;
   }
   startGame() {
     this.clues = this.shuffle(dataSet.clues)
     this.categoryData = this.shuffle(this.categoryData)
     this.createRound();
-    console.log(this.players[0])
+    domUpdates.playerOneTurn(this);
   }
   createPlayers(names) {
     const players = names.map(name => {
       let newPlayer = new Player(name);
       return newPlayer;
     });
-    console.log(players[2]);
     this.players = players;
     domUpdates.renderNames(this.players);
   }
@@ -44,6 +43,7 @@ class Game {
     }
     // } else if (this.currentPlayer = player)fgegea
     console.log('current player', this.players[this.currentPlayer]);
+    domUpdates.indicatePlayer(this.currentPlayer);
   }
 }
 

@@ -20,6 +20,7 @@ body {
 .player-name {
     padding: 5px 0 8px 10px;
     height: 40px;
+    font-family: 'Pacifico', cursive;
 }
 .start-game-form {
     display: flex;
