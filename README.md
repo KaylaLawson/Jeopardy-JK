@@ -24,8 +24,7 @@
 [link to dtr](https://gist.github.com/jacquelinebelle/fbc58bb9ac3a3be963cbcbdc995d4410)
 
 <!-- contributors -->
-devin?
-union station
+
 
 <!-- contact us -->
 ### Contact Us
