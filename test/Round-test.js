@@ -10,23 +10,23 @@ import domUpdates from '../src/domUpdates.js';
 chai.spy.on(domUpdates, ['displayCategories', 'renderClue'], () => true);
 
 let mockClues = [{
-      question: "Scorecard Report\" & \"Peter Jacobsen Plugged In\" are seen on the sports channel devoted to this",
-      pointValue: 100,
-      answer: "golf",
-      categoryId: 10
-    },
-    {
-      question: "One of the most popular shows on the Food Network is \"The Essence of\" him",
-      pointValue: 200,
-      answer: "Emeril",
-      categoryId: 10
-    },
-    {
-      question: "The Eulogy\" is HBO's e-mail newsletter devoted to this series",
-      pointValue: 300,
-      answer: "Six Feet Under",
-      categoryId: 10
-    }];
+  question: "Scorecard Report\" & \"Peter Jacobsen Plugged In\" are seen on the sports channel devoted to this",
+  pointValue: 100,
+  answer: "golf",
+  categoryId: 10
+},
+{
+  question: "One of the most popular shows on the Food Network is \"The Essence of\" him",
+  pointValue: 200,
+  answer: "Emeril",
+  categoryId: 10
+},
+{
+  question: "The Eulogy\" is HBO's e-mail newsletter devoted to this series",
+  pointValue: 300,
+  answer: "Six Feet Under",
+  categoryId: 10
+}];
 let mockIds = [1, 2, 3, 4]
 
 describe ('Round', function() {

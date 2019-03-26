@@ -20,16 +20,16 @@ export default {
     })
   },
   renderClue(clue, event) {
-   $(event.target).addClass("used").off("click").text('');
-   $('.clue-card').toggleClass("hidden");
-   $('.clue-question').text(clue.question)
-   $('.game-board, .start-game-form, h1').addClass("opacity");
+    $(event.target).addClass("used").off("click").text('');
+    $('.clue-card').toggleClass("hidden");
+    $('.clue-question').text(clue.question)
+    $('.game-board, .start-game-form, h1').addClass("opacity");
     console.log('clue', clue)
   },
   disappearClue() {
     $('.game-board, .start-game-form, h1').removeClass("opacity");
   },
-   checkAnswer() {
+  checkAnswer() {
     const questionText = $('.clue-question');
     const guess = $('#guess-input').val();
     const answer = dataSet.clues.reduce((acc, currClue) => {
@@ -59,7 +59,25 @@ export default {
     // if (checkAnswer)
     // game.players[game.currentPlayer].score += pointVal
   },
-  function() {
-    // ignore this
+  indicatePlayer(game) {
+    if (game.currentPlayer === 0) {
+      $('.player-0').addClass('white');
+      $('.player-2').removeClass('white');
+    }
+    if (game.currentPlayer === 1) {
+      $('.player-1').addClass('white');
+      $('.player-0').removeClass('white');
+    }
+    if (game.currentPlayer === 2) {
+      $('.player-2').addClass('white');
+      $('.player-0').removeClass('white');
+      $('.player-1').removeClass('white');
+    }
+  },
+  playerOneTurn(game) {
+    if(game.currentPlayer === 0) {
+      $('.player-0').addClass('white');
+      $('.player-2').removeClass('white');
+    }
   }
 }

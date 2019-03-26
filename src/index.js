@@ -25,6 +25,7 @@ $startGameBtn.click(function(event) {
   game = new Game;
   game.createPlayers(names); // deal with this duplication
   game.startGame();
+
 });
 
 $valBtn.on("click", function(event) {
@@ -35,15 +36,13 @@ $valBtn.on("click", function(event) {
   // const innerText = event.target.innerText
   console.log({id, innerText})
   game.round.findClue(id, innerText, event)
-  game.changePlayer();
+  // game.changePlayer();
 });
 
 $guessBtn.click(function(event) {
   event.preventDefault();
   const guess = $('#guess-input').val();
-  console.log(guess);
   domUpdates.checkAnswer(guess);
-  domUpdates.disappearClue();
 })
 
 $closeBtn.click(function(event) {
@@ -53,7 +52,9 @@ $closeBtn.click(function(event) {
   $('#guess-input').val('');
   $('.answer').text('Guess below!');
   $('#close').addClass('hidden');
-  console.log('current player score', game.players[game.currentPlayer].score);
+  domUpdates.disappearClue();
+  game.changePlayer();
+  domUpdates.indicatePlayer(game);
 })
 // $resetBtn.click(function() {
 
