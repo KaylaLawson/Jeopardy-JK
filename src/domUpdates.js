@@ -60,6 +60,6 @@ export default {
     // game.players[game.currentPlayer].score += pointVal
   },
   function() {
-    
+    // ignore this
   }
 }
