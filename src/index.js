@@ -15,7 +15,7 @@ import './css/landingPage.css';
 const $startGameBtn = $(".start-game-btn");
 const $valBtn = $(".val-btn");
 // const $resetBtn = $('.reset-btn');
-const $guessBtn = $(".guess-btn");
+const $guessBtn = $("#submit");
 const $closeBtn = $("#close");
 let game;
 
@@ -35,14 +35,16 @@ $valBtn.on("click", function(event) {
   // const id = event.target.id 
   // const innerText = event.target.innerText
   console.log({id, innerText})
-  game.round.findClue(id, innerText, event)
+  game.round.findClueById(id, innerText, event)
   // game.changePlayer();
 });
 
 $guessBtn.click(function(event) {
-  event.preventDefault();
+  // event.preventDefault();
+  console.log(event);
   const guess = $('#guess-input').val();
-  domUpdates.checkAnswer(guess);
+  // console.log($('#guess-input').val(), guess)
+  domUpdates.checkAnswer(guess, game);
 })
 
 $closeBtn.click(function(event) {

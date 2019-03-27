@@ -45,6 +45,12 @@ class Game {
     console.log('current player', this.players[this.currentPlayer]);
     domUpdates.indicatePlayer(this.currentPlayer);
   }
+  findClue(questionText) {
+    const currClue = this.clues.find((clue) => {
+      return questionText.text() === clue.question;
+    })
+    return currClue;
+  }
 }
 
 export default Game;

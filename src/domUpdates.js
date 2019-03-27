@@ -29,19 +29,18 @@ export default {
   disappearClue() {
     $('.game-board, .start-game-form, h1').removeClass("opacity");
   },
-  checkAnswer() {
+  checkAnswer(guess, game) {
+    // reduce to find because we want the object
     const questionText = $('.clue-question');
-    const guess = $('#guess-input').val();
-    const answer = dataSet.clues.reduce((acc, currClue) => {
-      if (questionText.text() === currClue.question) {
-        acc += currClue.answer;
-      }
-      return acc;
-    }, '')
-    if (answer.toLowerCase() === guess.toLowerCase()) {
-      this.showCorrect();
+    const currClue = game.findClue(questionText);
+    if (currClue.answer.toLowerCase() === guess.toLowerCase()) {
+      this.showCorrect(game);
+      game.players[game.currentPlayer].updateScore(currClue.pointValue, true)
+      $(`.score-${game.currentPlayer}`).text(game.players[game.currentPlayer].score)
     } else {
       this.showWrong();
+      game.players[game.currentPlayer].updateScore(currClue.pointValue, false)
+      $(`.score-${game.currentPlayer}`).text(game.players[game.currentPlayer].score)
     }
   },
   showCorrect() {
@@ -53,11 +52,6 @@ export default {
     $('.answer').removeClass('hidden').text('Wrong!');
     $('#submit').addClass('hidden');
     $('#close').removeClass('hidden');
-  },
-  changeScore(pointVal) {
-    console.log(pointVal);
-    // if (checkAnswer)
-    // game.players[game.currentPlayer].score += pointVal
   },
   indicatePlayer(game) {
     if (game.currentPlayer === 0) {
