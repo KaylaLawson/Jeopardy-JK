@@ -10,6 +10,8 @@ import domUpdates from '../src/domUpdates.js';
 
 chai.spy.on(domUpdates, 'renderNames', () => true);
 
+let questionText = "One of the most popular shows on the Food Network is \"The Essence of\" him";
+
 
 describe('Game', function() {
   let game;
@@ -38,4 +40,20 @@ describe('Game', function() {
     expect(game.round.clues).to.deep.equal([]);
     expect(game.round.categoryIds).to.deep.equal([ 1, 2, 3, 4 ]);
   });
+
+  it('should change players', function() {
+    expect(game.currentPlayer).to.equal(0);
+
+    game.changePlayer();
+    game.changePlayer();
+
+    expect(game.currentPlayer).to.equal(2);
+
+  })
+
+  it('should return a clue', function() {
+    game.findClue(questionText);
+
+    expect().to.equal();
+  })
 })

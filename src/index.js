@@ -17,6 +17,7 @@ const $valBtn = $(".val-btn");
 // const $resetBtn = $('.reset-btn');
 const $guessBtn = $("#submit");
 const $closeBtn = $("#close");
+const $newBtn = $('.new-btn')
 let game;
 
 $startGameBtn.click(function(event) {
@@ -34,14 +35,16 @@ $valBtn.on("click", function(event) {
   const {id, innerText} = event.target;
   // const id = event.target.id 
   // const innerText = event.target.innerText
-  console.log({id, innerText})
-  game.round.findClueById(id, innerText, event)
+  console.log('HEY', {id, innerText})
+  game.round.findClueById(id, innerText, event, game);
+  // game.round.newRound(game, event);
+
   // game.changePlayer();
 });
 
 $guessBtn.click(function(event) {
   // event.preventDefault();
-  console.log(event);
+  // console.log(event);
   const guess = $('#guess-input').val();
   // console.log($('#guess-input').val(), guess)
   domUpdates.checkAnswer(guess, game);

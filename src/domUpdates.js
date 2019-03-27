@@ -20,7 +20,9 @@ export default {
     })
   },
   renderClue(clue, event) {
-    $(event.target).addClass("used").off("click").text('');
+    $(event.target).addClass("used");
+    $(event.target).prop('disabled', true);
+
     $('.clue-card').toggleClass("hidden");
     $('.clue-question').text(clue.question)
     $('.game-board, .start-game-form, h1').addClass("opacity");
@@ -34,6 +36,7 @@ export default {
     const questionText = $('.clue-question');
     const currClue = game.findClue(questionText);
     if (currClue.answer.toLowerCase() === guess.toLowerCase()) {
+      counter++;
       this.showCorrect(game);
       game.players[game.currentPlayer].updateScore(currClue.pointValue, true)
       $(`.score-${game.currentPlayer}`).text(game.players[game.currentPlayer].score)
@@ -73,5 +76,12 @@ export default {
       $('.player-0').addClass('white');
       $('.player-2').removeClass('white');
     }
+  },
+  updateBoard(game, round) {
+    $('.round').text(`Round ${round}`)
+    $('.val-btn').removeClass('used');
+    console.log('this event', event);
+
+    // $(event.target).on('click', game.round.findClueById());
   }
 }

@@ -25,16 +25,13 @@ class Game {
     this.players = players;
     domUpdates.renderNames(this.players);
   }
-  createRound() {
-    const round = new Round(this.categoryData.splice(0, 4), this.clues); // two different arguments this.category... and this. clues are being passed as params into Round constructor(ids, clues)
+  createRound(roundNum = 1) {
+    const round = new Round(this.categoryData.splice(0, 4), this.clues, roundNum); // two different arguments this.category... and this. clues are being passed as params into Round constructor(ids, clues)
     round.renderCategories()
     this.round = round
   }
   shuffle(clues) {
     return clues.sort(() => 0.5 - Math.random());
-  }
-  changeRound() {
-    //increment round
   }
   changePlayer() {
     this.currentPlayer++;

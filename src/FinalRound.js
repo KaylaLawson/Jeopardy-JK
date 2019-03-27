@@ -5,7 +5,7 @@ class FinalRound //extends Round
     this.wager = 0;
     this.maxWager = 0;
   }
-  getClue() {
+  getFinalClue() {
     // selects final clue from clue array
   }
   chooseWinner() {

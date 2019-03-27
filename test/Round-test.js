@@ -45,7 +45,7 @@ describe ('Round', function() {
     let pointVal = 300;
     let mockEvent = {};
     
-    round.findClue(id, pointVal, mockEvent); 
+    round.findClueById(id, pointVal, mockEvent); 
     expect(domUpdates.renderClue).to.be.called();
   })
 

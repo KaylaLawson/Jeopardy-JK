@@ -55,8 +55,10 @@ li {
   height: 40px;
 }
 
-h1{
+h1,
+h3 {
   font-family: 'Press Start 2P', cursive;
+  margin-bottom: 10px;
   text-align: center;
 }
 
@@ -128,7 +130,7 @@ h1{
 }
 
 .white {
-  color: pink;
+  color: lightyellow;
 }
 
 .name {
