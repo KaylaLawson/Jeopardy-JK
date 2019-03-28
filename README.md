@@ -2,8 +2,7 @@
 ### Mod 2 Gametime: Jeopardy
 
 ## Authors:
-Jacqueline Moore
-Kayla Lawson
+Jacqueline Moore and Kayla Lawson
 
 ## Built with
 
