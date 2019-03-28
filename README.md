@@ -33,6 +33,10 @@ For this project we implemeneted object-oriented programming (OOP) principles to
 
 ## Images of project
 
+## Issues 
+
+* https://github.com/KaylaLawson/Jeopardy-JK/issues/23
+
 
 ### Design Inspiration
 [link to our color palette](https://www.color-hex.com/color-palette/73403)
