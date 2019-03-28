@@ -5,6 +5,7 @@
   </head>
   <body>
     <h1>Jeopardy JK</h1>
+    <h3 class="round">Round 1</h3>
     <form>  
       <div class="start-game-form">
         <input class="player-name start-form" id="input-0" type="text" value='Jacqueline' placeholder="Player 1">
@@ -13,7 +14,7 @@
         <button class="start-game-btn start-form">Start Game</button>
       </div>
     </form>
-    <main class="game-board">  
+    <main class="game-board"> 
       <ul>
         <li class="cat-title-0 title">Category 1</li>
         <li class="val-btn 0" id="1">100</li> 
@@ -46,14 +47,17 @@
         <div class="player-one-div players">
           <h2>Player One</h2>
           <h2 class="player-0 name"></h2>
+          <h2 class="score score-0">Score: 0</h2>
         </div>
         <div class="player-two-div players">
           <h2>Player Two</h2>
           <h2 class="player-1 name"></h2>
+          <h2 class="score score-1">Score: 0</h2>
         </div>
         <div class="player-three-div players">
           <h2>Player Three</h2>
           <h2 class="player-2 name"></h2>
+          <h2 class="score score-2">Score: 0</h2>
         </div>
       </section>
     </main>
@@ -64,9 +68,5 @@
       <button class="guess guess-btn" id="submit">submit!</button>
       <button class="guess guess-btn hidden" id="close">close!</button>
     </section>
-    <!-- <section class="result hidden">
-      <h3>hey</h3>
-    </section> -->
-    <!-- Do not include the index.js or main.bundle.js file here - it is done automatically by the webpack server -->
   </body>
 </html>

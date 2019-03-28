@@ -20,28 +20,25 @@ export default {
     })
   },
   renderClue(clue, event) {
-    $(event.target).addClass("used").off("click").text('');
+    $(event.target).addClass("used");
     $('.clue-card').toggleClass("hidden");
     $('.clue-question').text(clue.question)
     $('.game-board, .start-game-form, h1').addClass("opacity");
-    console.log('clue', clue)
   },
   disappearClue() {
     $('.game-board, .start-game-form, h1').removeClass("opacity");
   },
-  checkAnswer() {
+  checkAnswer(guess, game) {
     const questionText = $('.clue-question');
-    const guess = $('#guess-input').val();
-    const answer = dataSet.clues.reduce((acc, currClue) => {
-      if (questionText.text() === currClue.question) {
-        acc += currClue.answer;
-      }
-      return acc;
-    }, '')
-    if (answer.toLowerCase() === guess.toLowerCase()) {
-      this.showCorrect();
+    const currClue = game.findClue(questionText);
+    if (currClue.answer.toLowerCase() === guess.toLowerCase()) {
+      this.showCorrect(game);
+      game.players[game.currentPlayer].updateScore(currClue.pointValue, true)
+      $(`.score-${game.currentPlayer}`).text(game.players[game.currentPlayer].score)
     } else {
       this.showWrong();
+      game.players[game.currentPlayer].updateScore(currClue.pointValue, false)
+      $(`.score-${game.currentPlayer}`).text(game.players[game.currentPlayer].score)
     }
   },
   showCorrect() {
@@ -53,11 +50,6 @@ export default {
     $('.answer').removeClass('hidden').text('Wrong!');
     $('#submit').addClass('hidden');
     $('#close').removeClass('hidden');
-  },
-  changeScore(pointVal) {
-    console.log(pointVal);
-    // if (checkAnswer)
-    // game.players[game.currentPlayer].score += pointVal
   },
   indicatePlayer(game) {
     if (game.currentPlayer === 0) {
@@ -79,5 +71,9 @@ export default {
       $('.player-0').addClass('white');
       $('.player-2').removeClass('white');
     }
+  },
+  updateBoard(game, round) {
+    $('.round').text(`Round ${round}`)
+    $('.val-btn').removeClass('used');
   }
 }

@@ -4,11 +4,13 @@ class Player {
     this.score = 0;
     this.playerTurn = playerTurn;
   }
-  updateScore() {
-    //pass in guess and answer?
-    // if guess === answer 
-    //add value to score
-    // else decrease score by value
+  updateScore(points, bool) {
+    // bool ? this.score += points : this.score -= points;
+    if (bool) {
+      this.score += points
+    } else {
+      this.score -= points
+    }
   }
 }
 

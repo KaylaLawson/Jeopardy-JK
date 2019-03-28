@@ -18,15 +18,15 @@ body {
 }
 
 .player-name {
-    padding: 5px 0 8px 10px;
-    height: 40px;
     font-family: 'Pacifico', cursive;
+    height: 40px;
+    padding: 5px 0 8px 10px;
 }
 .start-game-form {
     display: flex;
     flex-direction: column;
-    width: 50%;
     margin: auto;
+    width: 50%;
 }
 
 .start-form {

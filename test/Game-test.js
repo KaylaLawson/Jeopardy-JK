@@ -10,7 +10,6 @@ import domUpdates from '../src/domUpdates.js';
 
 chai.spy.on(domUpdates, 'renderNames', () => true);
 
-
 describe('Game', function() {
   let game;
   beforeEach(function() {
@@ -38,4 +37,25 @@ describe('Game', function() {
     expect(game.round.clues).to.deep.equal([]);
     expect(game.round.categoryIds).to.deep.equal([ 1, 2, 3, 4 ]);
   });
+
+  it('should change players', function() {
+    expect(game.currentPlayer).to.equal(0);
+    game.changePlayer();
+    game.changePlayer();
+    expect(game.currentPlayer).to.equal(2);
+  })
+
+  it('should return a clue', function() {
+    let currClue = {
+      question: "The Eulogy\" is HBO's e-mail newsletter devoted to this series",
+      pointValue: 300,
+      answer: "Six Feet Under",
+      categoryId: 10
+    };
+    let questionText = "The Eulogy\" is HBO's e-mail newsletter devoted to this series";
+
+    game.findClue(questionText)
+
+    expect(questionText).to.equal(currClue.question);
+  })
 })
