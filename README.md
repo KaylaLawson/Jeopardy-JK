@@ -37,8 +37,6 @@ For this project we implemeneted object-oriented programming (OOP) principles to
 ### Design Inspiration
 [link to our color palette](https://www.color-hex.com/color-palette/73403)
 
-![GameBoard](https://user-images.githubusercontent.com/37053236/54728072-29567480-4b41-11e9-80f3-44b12c2bf8c0.png) -->
-
 ### DTR
 [link to dtr](https://gist.github.com/jacquelinebelle/fbc58bb9ac3a3be963cbcbdc995d4410)
 
