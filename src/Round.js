@@ -5,7 +5,7 @@ class Round {
   constructor(ids, clues, round) {
     this.clues = clues; 
     this.categoryIds = ids;
-    this.playCounter = 3;
+    this.playCounter = 16;
     this.round = round; 
   }
   renderCategories() {
@@ -14,9 +14,11 @@ class Round {
   findClueById(id, pointVal, event, game) {
     const clueToRender = this.clues.find(clue => {
       return id == clue.categoryId && pointVal == clue.pointValue; // could be stricly equal if parseInt id and pointVal
-    })
-    domUpdates.renderClue(clueToRender, event)
-    this.trackRound(game)
+    });
+    domUpdates.renderClue(clueToRender, event);
+    this.trackRound(game);
+    // console.log is here for testing purposes (logs answer)
+    console.log(clueToRender.answer);
   }
   trackRound(game) {
     this.playCounter--;

@@ -54,17 +54,27 @@ describe ('Round', function() {
   it('should track round', function() {
     const game = new Game();
 
-    expect(round.playCounter).to.equal(3);
+    expect(round.playCounter).to.equal(16);
     expect(round.round).to.equal(1);
 
-    round.trackRound(game); 
-
-
-    expect(round.playCounter).to.equal(2)
-
+    round.trackRound(game);
+    round.trackRound(game);
+    round.trackRound(game);
+    round.trackRound(game);
+    round.trackRound(game);
+    round.trackRound(game);
+    round.trackRound(game);
+    round.trackRound(game);
+    round.trackRound(game);
+    round.trackRound(game);
+    round.trackRound(game);
+    round.trackRound(game);
+    round.trackRound(game);
+    round.trackRound(game);
+    round.trackRound(game);
     round.trackRound(game);
 
-    round.trackRound(game);
+    expect(round.playCounter).to.equal(0)
 
     expect(domUpdates.updateBoard).to.be.called();
     expect(round.round).to.equal(2);

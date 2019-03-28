@@ -1,20 +1,13 @@
-// This is the JavaScript entry file - your code begins here
-// Do not delete or rename this file
-
-// An example of how you import jQuery into a JS file if you use jQuery in the file
 import $ from 'jquery';
 import Game from './Game.js';
 import domUpdates from './domUpdates.js';
 
-// An example of how you tell webpack to apply a CSS file
 import './css/normalize.css';
 import './css/base.css';
 import './css/landingPage.css';
 
-// let game;
 const $startGameBtn = $(".start-game-btn");
 const $valBtn = $(".val-btn");
-// const $resetBtn = $('.reset-btn');
 const $guessBtn = $("#submit");
 const $closeBtn = $("#close");
 const $newBtn = $('.new-btn')
@@ -24,29 +17,18 @@ $startGameBtn.click(function(event) {
   event.preventDefault()
   const names = [$('#input-0').val(), $('#input-1').val(), $('#input-2').val()]
   game = new Game;
-  game.createPlayers(names); // deal with this duplication
+  game.createPlayers(names);
   game.startGame();
-
 });
 
 $valBtn.on("click", function(event) {
   event.preventDefault();
-  // const event.target = { id: ${8, dynamic}, innerText: ${400: dynamic} }
   const {id, innerText} = event.target;
-  // const id = event.target.id 
-  // const innerText = event.target.innerText
-  console.log('HEY', {id, innerText})
   game.round.findClueById(id, innerText, event, game);
-  // game.round.newRound(game, event);
-
-  // game.changePlayer();
 });
 
 $guessBtn.click(function(event) {
-  // event.preventDefault();
-  // console.log(event);
   const guess = $('#guess-input').val();
-  // console.log($('#guess-input').val(), guess)
   domUpdates.checkAnswer(guess, game);
 })
 
@@ -61,9 +43,6 @@ $closeBtn.click(function(event) {
   game.changePlayer();
   domUpdates.indicatePlayer(game);
 })
-// $resetBtn.click(function() {
-
-// })
 
 
 

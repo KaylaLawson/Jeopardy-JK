@@ -24,17 +24,14 @@ export default {
     $('.clue-card').toggleClass("hidden");
     $('.clue-question').text(clue.question)
     $('.game-board, .start-game-form, h1').addClass("opacity");
-    console.log('clue', clue)
   },
   disappearClue() {
     $('.game-board, .start-game-form, h1').removeClass("opacity");
   },
   checkAnswer(guess, game) {
-    // reduce to find because we want the object
     const questionText = $('.clue-question');
     const currClue = game.findClue(questionText);
     if (currClue.answer.toLowerCase() === guess.toLowerCase()) {
-      counter++;
       this.showCorrect(game);
       game.players[game.currentPlayer].updateScore(currClue.pointValue, true)
       $(`.score-${game.currentPlayer}`).text(game.players[game.currentPlayer].score)
@@ -78,8 +75,5 @@ export default {
   updateBoard(game, round) {
     $('.round').text(`Round ${round}`)
     $('.val-btn').removeClass('used');
-    console.log('this event', event);
-
-    // $(event.target).on('click', game.round.findClueById());
   }
 }

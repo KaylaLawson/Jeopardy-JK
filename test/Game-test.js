@@ -40,12 +40,9 @@ describe('Game', function() {
 
   it('should change players', function() {
     expect(game.currentPlayer).to.equal(0);
-
     game.changePlayer();
     game.changePlayer();
-
     expect(game.currentPlayer).to.equal(2);
-
   })
 
   it('should return a clue', function() {
