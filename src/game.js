@@ -38,8 +38,6 @@ class Game {
     if (this.currentPlayer === 3) {
       this.currentPlayer = 0;
     }
-    // } else if (this.currentPlayer = player)fgegea
-    console.log('current player', this.players[this.currentPlayer]);
     domUpdates.indicatePlayer(this.currentPlayer);
   }
   findClue(questionText) {

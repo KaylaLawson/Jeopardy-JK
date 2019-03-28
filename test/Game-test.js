@@ -10,9 +10,6 @@ import domUpdates from '../src/domUpdates.js';
 
 chai.spy.on(domUpdates, 'renderNames', () => true);
 
-let questionText = "One of the most popular shows on the Food Network is \"The Essence of\" him";
-
-
 describe('Game', function() {
   let game;
   beforeEach(function() {
@@ -52,8 +49,16 @@ describe('Game', function() {
   })
 
   it('should return a clue', function() {
-    game.findClue(questionText);
+    let currClue = {
+      question: "The Eulogy\" is HBO's e-mail newsletter devoted to this series",
+      pointValue: 300,
+      answer: "Six Feet Under",
+      categoryId: 10
+    };
+    let questionText = "The Eulogy\" is HBO's e-mail newsletter devoted to this series";
 
-    expect().to.equal();
+    game.findClue(questionText)
+
+    expect(questionText).to.equal(currClue.question);
   })
 })

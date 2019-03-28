@@ -15,4 +15,16 @@ describe ('Player', function() {
     expect(player.score).to.equal(0);
     // expect(player.playerTurn).to.equal(false);
   });
+
+  it ('should update score', function() {
+    let points = 100;
+    let bool = true;
+
+    expect(player.score).to.equal(0);
+
+    player.updateScore(points, bool);
+
+    expect(player.score).to.equal(100);
+
+  })
 })

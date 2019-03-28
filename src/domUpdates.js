@@ -21,8 +21,6 @@ export default {
   },
   renderClue(clue, event) {
     $(event.target).addClass("used");
-    $(event.target).prop('disabled', true);
-
     $('.clue-card').toggleClass("hidden");
     $('.clue-question').text(clue.question)
     $('.game-board, .start-game-form, h1').addClass("opacity");
