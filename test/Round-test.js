@@ -9,6 +9,7 @@ import Game from '../src/Game.js';
 import domUpdates from '../src/domUpdates.js';
 
 chai.spy.on(domUpdates, ['displayCategories', 'renderClue', 'updateBoard'], () => true);
+// chai.spy.on(Round, 'trackRound', () => true);
 
 let mockClues = [{
   question: "Scorecard Report\" & \"Peter Jacobsen Plugged In\" are seen on the sports channel devoted to this",
@@ -48,8 +49,23 @@ describe ('Round', function() {
     let mockEvent = {};
     
     round.findClueById(id, pointVal, mockEvent); 
+  });
+
+  it('should display clue', function() {
+    let mockGame = new Game;
+    let mockEvent = {};
+    let mockClue = {
+      question: "Scorecard Report\" & \"Peter Jacobsen Plugged In\" are seen on the sports channel devoted to this",
+      pointValue: 100,
+      answer: "golf",
+      categoryId: 10
+    }
+    round.displayClue(mockClue, mockEvent, mockGame); 
+
     expect(domUpdates.renderClue).to.be.called();
-  })
+    // expect(round.trackRound).to.be.called();
+    //could not spy on this method
+  });
 
   it('should track round', function() {
     const game = new Game();
@@ -57,22 +73,9 @@ describe ('Round', function() {
     expect(round.playCounter).to.equal(16);
     expect(round.round).to.equal(1);
 
-    round.trackRound(game);
-    round.trackRound(game);
-    round.trackRound(game);
-    round.trackRound(game);
-    round.trackRound(game);
-    round.trackRound(game);
-    round.trackRound(game);
-    round.trackRound(game);
-    round.trackRound(game);
-    round.trackRound(game);
-    round.trackRound(game);
-    round.trackRound(game);
-    round.trackRound(game);
-    round.trackRound(game);
-    round.trackRound(game);
-    round.trackRound(game);
+    for (let i = 0; i < 16; i++) {
+      round.trackRound(game);
+    }
 
     expect(round.playCounter).to.equal(0)
 

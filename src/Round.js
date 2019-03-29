@@ -1,27 +1,29 @@
 import domUpdates from './domUpdates.js';
 import dataSet from './dataSet.js';
+import DailyDouble from './DailyDouble.js';
 
 class Round {
   constructor(ids, clues, round) {
     this.clues = clues; 
     this.categoryIds = ids;
-    this.playCounter = 3;
+    this.playCounter = 16;
     this.round = round; 
-    this.dailyDouble = 0;
-    this.wager = 0;
+    this.dailyDoubleNum = 0;
+    this.dailyD = null;
   }
   renderCategories() {
     domUpdates.displayCategories(this.categoryIds); 
-    this.dailyDoubleNum();
+    this.getDailyDoubleNum();
   }
-  findClueById(id, pointVal, event, game, wager) {
+  findClueById(id, pointVal) {
     const clueToRender = this.clues.find(clue => {
       return id == clue.categoryId && pointVal == clue.pointValue; 
     });
-    domUpdates.renderClue(clueToRender, event, wager);
+    return clueToRender;
+  }
+  displayClue(clueToRender, event, game) {
+    domUpdates.renderClue(clueToRender, event);
     this.trackRound(game);
-    console.log(clueToRender.answer);
-
   }
   trackRound(game) {
     this.playCounter--;
@@ -31,21 +33,18 @@ class Round {
       game.createRound(this.round);
     }
   }
-  dailyDoubleNum() {
-    this.dailyDouble = Math.floor((Math.random() * this.playCounter) + 1 ); 
+  getDailyDoubleNum() {
+    this.dailyDoubleNum = Math.floor((Math.random() * this.playCounter) + 1 ); 
   }
   checkDailyDouble(id, pointVal, event, game) {
-    if (this.playCounter === this.dailyDouble) {
-      console.log('do things');
+    const clueToUse =  this.findClueById(id, pointVal);
+    if (this.playCounter === this.dailyDoubleNum) {
+      this.dailyD = new DailyDouble(clueToUse);
       domUpdates.displayDailyDouble(game)
+      // logic for round two having 2 dds
     } else {
-      this.findClueById(id, pointVal, event, game);
+      this.displayClue(clueToUse, event, game)
     }
-  }
-  randomDD() {
-    const dailyPick = dataSet.clues[(Math.floor(Math.random() * 114) + 1)];
-    console.log(dailyPick)
-    domUpdates.displayDailyDoubleQuestion(dailyPick);
   }
 }
 

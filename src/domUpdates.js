@@ -21,7 +21,7 @@ export default {
     })
   },
   renderClue(clue, event) {
-    $(event.target).addClass("used");
+    //find that clue and remove it
     $('.clue-card').toggleClass("hidden");
     $('.clue-question').text(clue.question)
     $('.game-board, .start-game-form, h1').addClass("opacity");
@@ -31,20 +31,20 @@ export default {
   },
   checkAnswer(guess, game) {
     const questionText = $('.clue-question');
-    const wager = $('.dd-input').val();
-    console.log('wager', wager);
-    const currClue = game.findClue(questionText);
-    const dailyD = new DailyDouble(currClue.question, currClue.answer, currClue.pointValue)
-    dailyD.updateScore(wager);
+    // const wager = $('.dd-input').val();
+    // console.log('wager', wager);
+    const currClue = game.round.dailyD || game.findClue(questionText);
+    // const dailyD = new DailyDouble(currClue.question, currClue.answer, currClue.pointValue)
     if (currClue.answer.toLowerCase() === guess.toLowerCase()) {
       this.showCorrect(game);
-      game.players[game.currentPlayer].updateScore(wager = currClue.pointValue, true)
+      game.players[game.currentPlayer].updateScore(currClue.pointValue, true)
       $(`.score-${game.currentPlayer}`).text(game.players[game.currentPlayer].score)
     } else {
       this.showWrong();
       game.players[game.currentPlayer].updateScore(currClue.pointValue, false)
       $(`.score-${game.currentPlayer}`).text(game.players[game.currentPlayer].score)
     }
+    game.round.dailyD = null;
   },
   showCorrect() {
     $('.answer').removeClass('hidden').text('Correct!');
@@ -82,10 +82,7 @@ export default {
     $('.val-btn').removeClass('used');
   },
   displayDailyDouble(game) {
-    $('.dd').removeClass('hidden');
-    // console.log($('.dd-input').val());
-    const wager = $('.dd-input').val();
-    game.round.randomDD();
+    $('.dd').removeClass('hidden'); 
   },
   displayDailyDoubleQuestion(clue) {
     $('.clue-card').toggleClass("hidden");

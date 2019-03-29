@@ -8,7 +8,7 @@ import Game from '../src/Game.js';
 import Round from '../src/Round.js';
 import domUpdates from '../src/domUpdates.js';
 
-chai.spy.on(domUpdates, 'renderNames', () => true);
+chai.spy.on(domUpdates, [ 'renderNames', 'indicatePlayer' ], () => true);
 
 describe('Game', function() {
   let game;
@@ -36,6 +36,8 @@ describe('Game', function() {
     game.createRound();
     expect(game.round.clues).to.deep.equal([]);
     expect(game.round.categoryIds).to.deep.equal([ 1, 2, 3, 4 ]);
+    // expect(game.round.renderCategories).to.be.called();
+    // could not spy on this method
   });
 
   it('should change players', function() {
@@ -43,6 +45,7 @@ describe('Game', function() {
     game.changePlayer();
     game.changePlayer();
     expect(game.currentPlayer).to.equal(2);
+    expect(domUpdates.indicatePlayer).to.be.called();
   })
 
   it('should return a clue', function() {
