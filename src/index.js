@@ -10,7 +10,8 @@ const $startGameBtn = $(".start-game-btn");
 const $valBtn = $(".val-btn");
 const $guessBtn = $("#submit");
 const $closeBtn = $("#close");
-const $newBtn = $('.new-btn')
+const $ddBtn = $('#dd-btn');
+
 let game;
 
 $startGameBtn.click(function(event) {
@@ -24,7 +25,8 @@ $startGameBtn.click(function(event) {
 $valBtn.on("click", function(event) {
   event.preventDefault();
   const {id, innerText} = event.target;
-  game.round.findClueById(id, innerText, event, game);
+  game.round.checkDailyDouble(id, innerText, event, game);
+
 });
 
 $guessBtn.click(function(event) {
@@ -42,6 +44,13 @@ $closeBtn.click(function(event) {
   domUpdates.disappearClue();
   game.changePlayer();
   domUpdates.indicatePlayer(game);
+})
+$ddBtn.click(function(event) {
+  event.preventDefault();
+  $('.dd').addClass('hidden');
+  console.log(event.target)
+  const {id, pointVal} = event.target;
+  game.round.randomDD()
 })
 
 
