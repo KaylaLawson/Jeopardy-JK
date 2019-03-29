@@ -26,7 +26,7 @@ $valBtn.on("click", function(event) {
   event.preventDefault();
   const {id, innerText} = event.target;
   game.round.checkDailyDouble(id, innerText, event, game);
-
+  $(event.target).addClass("used");
 });
 
 $guessBtn.click(function(event) {
@@ -48,9 +48,9 @@ $closeBtn.click(function(event) {
 $ddBtn.click(function(event) {
   event.preventDefault();
   $('.dd').addClass('hidden');
-  console.log(event.target)
-  const {id, pointVal} = event.target;
-  game.round.randomDD()
+  const wager = $('.dd-input').val();
+  game.round.dailyD.updateScore(wager);
+  game.round.displayClue(game.round.dailyD, event, game); 
 })
 
 
