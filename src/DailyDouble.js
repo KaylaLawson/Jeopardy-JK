@@ -1,16 +1,14 @@
-class DailyDouble {
-  constructor() {
-    this.wager = 0;
-    this.maxWager = 0;
+import Round from './Round';
+import domUpdates from './domUpdates.js'
+
+class DailyDouble extends Round {
+  constructor(question, answer, pointValue) {
+    super(question, answer, pointValue);
   }
-  setMaxWager() {
-    // sort all players' scores
-    // highest score = maxWager
+  updateScore(newPointValue) {
+    this.pointValue = parseInt(newPointValue)
   }
-  acceptWager() {
-    // if wager > maxWager - error message
-    // else update board accordingly
-  }
+
 }
 
 export default DailyDouble;

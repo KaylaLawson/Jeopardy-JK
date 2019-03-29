@@ -1,6 +1,7 @@
 import $ from 'jquery';
 import dataSet from './dataSet.js';
 import Game from './Game.js';
+import DailyDouble from './DailyDouble.js';
 
 export default {
   renderNames (players) {
@@ -30,10 +31,14 @@ export default {
   },
   checkAnswer(guess, game) {
     const questionText = $('.clue-question');
+    const wager = $('.dd-input').val();
+    console.log('wager', wager);
     const currClue = game.findClue(questionText);
+    const dailyD = new DailyDouble(currClue.question, currClue.answer, currClue.pointValue)
+    dailyD.updateScore(wager);
     if (currClue.answer.toLowerCase() === guess.toLowerCase()) {
       this.showCorrect(game);
-      game.players[game.currentPlayer].updateScore(currClue.pointValue, true)
+      game.players[game.currentPlayer].updateScore(wager = currClue.pointValue, true)
       $(`.score-${game.currentPlayer}`).text(game.players[game.currentPlayer].score)
     } else {
       this.showWrong();
@@ -75,5 +80,16 @@ export default {
   updateBoard(game, round) {
     $('.round').text(`Round ${round}`)
     $('.val-btn').removeClass('used');
+  },
+  displayDailyDouble(game) {
+    $('.dd').removeClass('hidden');
+    // console.log($('.dd-input').val());
+    const wager = $('.dd-input').val();
+    game.round.randomDD();
+  },
+  displayDailyDoubleQuestion(clue) {
+    $('.clue-card').toggleClass("hidden");
+    $('.clue-question').text(clue.question)
+    $('.game-board, .start-game-form, h1').addClass("opacity");
   }
 }
