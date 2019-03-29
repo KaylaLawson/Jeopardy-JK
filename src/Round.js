@@ -6,7 +6,7 @@ class Round {
   constructor(ids, clues, round) {
     this.clues = clues; 
     this.categoryIds = ids;
-    this.playCounter = 3;
+    this.playCounter = 16;
     this.round = round; 
     this.dailyDoubleNum = 0;
     this.dailyD = null;
@@ -24,7 +24,6 @@ class Round {
   displayClue(clueToRender, event, game) {
     domUpdates.renderClue(clueToRender, event);
     this.trackRound(game);
-
   }
   trackRound(game) {
     this.playCounter--;
